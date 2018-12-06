@@ -1,36 +1,44 @@
 freqf=0
-freqi=0
+currentFreq=0
 freqList=[]
+sumList=[]
+n=1
 
 #Input file handling
-freqFile = open("input.txt",'r')
-freqString=freqFile.readlines()
-freqFile.seek(0)
-numLines = sum(1 for line in freqString)
-#print(numLines)
+fFile = open("input.txt",'r')
+freqList = [int(line) for line in fFile]
+numLines = len(freqList)
 #
 
-for i in range(0,numLines):
-    if freqString[i][0]=="+":
-        freqf=freqf + int(freqString[i][1:])
+i=0
+while True:
+    s=set()
+    currentFreq += freqList[i]
+    if currentFreq in s:
+        print("yas", sumList[i])
+        break
     else:
-        freqf=freqf - int(freqString[i][1:])
+        s.add(currentFreq)
+
+    i += 1
+
+    if i == (numLines)*n - 1:
+        n = n + 1
+        print(n)
+        freqList.extend(freqList)
+
+    
+
+    
+
+
+#freqf=sum(freqList)
+#print(freqf)
+
+print(sumList[-1])
     
     
-    
-print(freqf)
-    
-    
-    
-   
-
-
-
-
-
-
-
-freqFile.close()
+fFile.close()
 
 
 
